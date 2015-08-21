@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtSerie"
+        android:id="@+id/txtSerieAddTomo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnSerie"
+        android:layout_below="@+id/txtSerieAddTomo"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtTomoUnico"
+        android:id="@+id/txtTomoUnico"
+        android:layout_below="@+id/spnSerie"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtTomoUnico"
+        android:layout_alignBottom="@+id/txtTomoUnico"
+        android:layout_toRightOf="@id/txtTomoUnico" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtVariosTomos"
+        android:id="@+id/txtVariosTomos"
+        android:layout_below="@+id/edtTomoUnico"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtVariosTomosMin"
+        android:layout_alignBottom="@+id/txtVariosTomos"
+        android:layout_toRightOf="@+id/txtVariosTomos" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtVariosTomosAl"
+        android:id="@+id/txtVariosTomosAl"
+        android:layout_below="@+id/txtVariosTomos"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/edtVariosTomosMax"
+        android:layout_below="@+id/edtVariosTomosMin"
+        android:layout_alignBottom="@+id/txtVariosTomosAl"
+        android:layout_alignLeft="@id/edtVariosTomosMin"
+        android:layout_toRightOf="@id/txtVariosTomosAl"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtAddTomos"
+        android:id="@+id/btnAddTomos"
+        android:layout_below="@+id/txtVariosTomosAl"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

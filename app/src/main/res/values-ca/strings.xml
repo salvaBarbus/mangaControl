@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Manga Control</string>
+    <string name="title_section1">Control de Series</string>
+    <string name="title_section2">Control de Volums</string>
+    <string name="title_section3">Control d\'Editorials</string>
+    <string name="title_section4">Llista de la compra</string>
+    <string name="title_section5">Copia de Seguretat de la Base de Dades</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Ajustaments</string>
+    <string name="strAddSerie">Afegir Serie</string>
+    <string name="strAddEditorial">Afegir Editorial</string>
+    <string name="txtNombreEditorial">Nom de l\'editorial:</string>
+    <string name="ctxOptionEditEditorial">Editar Editorial</string>
+    <string name="ctxOptionDeleteEditorial">Eliminar Editorial</string>
+    <string name="txtEditorialCreadaOK">Editorial creada satisfactoriament</string>
+    <string name="txtEditorialModificadaOK">Editorial modificada satisfactoriament</string>
+    <string name="txtErrorNombreEditorialNulo">El nom de l\'editorial no pot ser nul</string>
+    <string name="strEditEditorial">Editar Editorial</string>
+    <string name="txtNombreSerie">Nom de la serie</string>
+    <string name="txtEditorial">Editorial:</string>
+    <string name="txtEstado">Estat de la Serie:</string>
+    <string name="rdbtnSerieAbierta">Serie Oberta</string>
+    <string name="rdbtnSerieCerrada">Serie Tancada</string>
+    <string name="txtNumeroVolumenes">Nombre de Volums</string>
+    <string name="txtEstadoColeccion">Estat de la col·lecció:</string>
+    <string name="btnAddSerie">Afegir Serie</string>
+    <string name="txtDoBackup">Crear Copia de Seguretat de la Base de Dades</string>
+    <string name="txtSerie">Serie:</string>
+    <string name="txtTomoUnico">Volum únic:</string>
+    <string name="txtVariosTomos">Volums del:</string>
+    <string name="txtVariosTomosAl">al:</string>
+    <string name="txtAddTomos">Afegir Volums</string>
+    <string name="errSinNombreSerie">És necessari indicar el nom de la serie.</string>
+    <string name="errSinEditorial">És necessari escollir una editorial.</string>
+    <string name="errSinEstadoSerie">És necessari escollir un estat de publicació de la serie.</string>
+    <string name="errSinNumVol">És necessari indicar el número de volums publicats fins avui.</string>
+    <string name="errSinEstadoColeccion">És necessari indicar l\'estat de la col·lecció d\'aquesta serie.</string>
+    <string name="txtBtnComprar">Comprar</string>
+    <string name="txtTomo">Volum:</string>
+    <string name="ctxOptionDeleteSerie">Eliminar Serie</string>
+    <string name="ctxOptionEditSerie">Editar Serie</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtTomoComprado">Volum Comprat</string>
+    <string name="txtTomoPorComprar">Comprar Volum</string>
+    <string name="action_search">Search</string>
+    <string name="txtGenero">Genero</string>
+    <string name="errSinGenero">Es necesario escoger un género.\n</string>
+    <string name="txtLitNumSeries">Número de series</string>
+    <string name="txtLitNumEditoriales">Número de editoriales</string>
+    <string name="txtLitTotalTomos">Total de Tomos:</string>
+    <string name="txtLitEditMasTomos">Editorial con más tomos:</string>
+    <string name="txtLitGeneroMasTomos">Género con más Tomos:</string>
+    <string name="txtLitSerieMasLarga">Serie más larga:</string>
+    <string name="title_section6">Estadísticas</string>
+    <string name="txtBlankString" />
+    <string name="txtLoadBackUp">Cargar Copia de Seguridad de la Base de Datos</string>
+    <string name="about">Acerca de...</string>
+    <string name="notYetImplemented">Aún por implementar</string>
+
+</resources>

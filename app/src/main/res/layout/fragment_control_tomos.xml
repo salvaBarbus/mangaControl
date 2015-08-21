@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtSerie"
+        android:id="@+id/txtSerieControlTomos"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnNombreSerieControlTomos"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@id/txtSerieControlTomos"
+        android:layout_toEndOf="@+id/txtSerieControlTomos" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtTomo"
+        android:id="@+id/txtTomosControlTomos"
+        android:layout_below="@+id/spnNombreSerieControlTomos"
+        android:paddingTop="5dp"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstTomosControlTomos"
+        android:layout_below="@+id/txtTomosControlTomos"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
