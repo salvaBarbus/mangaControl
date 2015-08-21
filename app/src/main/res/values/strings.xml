@@ -61,5 +61,9 @@
     <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
     <string name="notYetImplemented">Aún por implementar</string>
     <string name="title_section7">Prueba Lista</string>
+    <string name="txtNombreOriginalSerie">Nombre Original de la Serie</string>
+    <string name="editarSerieConValores">Editar serie con estos valores?</string>
+    <string name="strAceptar">Aceptar</string>
+    <string name="strCancelar">Cancelar</string>
 
 </resources>

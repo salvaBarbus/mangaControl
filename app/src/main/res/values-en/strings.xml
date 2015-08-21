@@ -59,5 +59,9 @@
     <string name="txtLoadBackUp">Cargar Copia de Seguridad de la Base de Datos</string>
     <string name="about">Acerca de...</string>
     <string name="notYetImplemented">Aún por implementar</string>
+    <string name="txtNombreOriginalSerie">Original Series Name</string>
+    <string name="editarSerieConValores">Edit series with these values?</string>
+    <string name="strAceptar">OK</string>
+    <string name="strCancelar">Cancel</string>
 
 </resources>

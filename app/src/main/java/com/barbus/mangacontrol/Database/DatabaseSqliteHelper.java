@@ -55,6 +55,10 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
             "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "nombreGenero TEXT )";
 
+    //STRINGS PARA UPDATEAR
+
+    String sqlUpdateSerie_addTituloOriginal = "alter table serie add column tituloOriginal text";
+
     public DatabaseSqliteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -141,28 +145,10 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-        //borramos las tablas actuales y las volvemos a crear
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        //TODO: NOPE NOPE NOPE NOPE. Cambiar a un onUpgrade decente!!!!
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS SERIE");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ESTADOSERIE");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS LNKSERIEVOL");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS TIPORELACION");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS VOLUMEN");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS EDITORIAL");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS TIPOVOLUMEN");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ESTADOCOLECCION");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS GENERO");
-
-        sqLiteDatabase.execSQL(sqlCreateSerie);
-        sqLiteDatabase.execSQL(sqlCreateEstadoSerie);
-        sqLiteDatabase.execSQL(sqlCreateLnkSerieVol);
-        sqLiteDatabase.execSQL(sqlCreateTiposRelacion);
-        sqLiteDatabase.execSQL(sqlCreateVolumen);
-        sqLiteDatabase.execSQL(sqlCreateEditoriales);
-        sqLiteDatabase.execSQL(sqlCreatetipoVolumen);
-        sqLiteDatabase.execSQL(sqlCreateEstadoColeccion);
-        sqLiteDatabase.execSQL(sqlCreateGenero);
+        if(newVersion > oldVersion) {
+            sqLiteDatabase.execSQL(sqlUpdateSerie_addTituloOriginal);
+        }
     }
 }

@@ -39,6 +39,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         ConfirmRemoveVolumenesFragment.NoticeDialogListener{
 
     private EditText edtNombreSerie;
+    private EditText edtNombreOriginalSerie;
     private Spinner spnEditorial;
     private RadioGroup radGroupSerie;
     private EditText edtNumeroVolumenes;
@@ -67,6 +68,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         View rootView = inflater.inflate(R.layout.fragment_add_serie, container, false);
 
         edtNombreSerie = (EditText) rootView.findViewById(R.id.edtNombreSerie);
+        edtNombreOriginalSerie = (EditText) rootView.findViewById(R.id.edtNombreOriginalSerie);
         spnEditorial = (Spinner) rootView.findViewById(R.id.spnEditorial);
         radGroupSerie = (RadioGroup) rootView.findViewById(R.id.radGroupSerie);
         edtNumeroVolumenes = (EditText) rootView.findViewById(R.id.edtNumeroVol);
@@ -125,6 +127,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                 {
                     //recogemos los valores introducidos por el usuario
                     String nombreSerie = edtNombreSerie.getText().toString();
+                    String nombreOriginalSerie = edtNombreOriginalSerie.getText().toString();
                     long idEditorial = spnEditorial.getSelectedItemId();
                     long idGenero = spnGenero.getSelectedItemId();
                     int checkedRadioButtonId = radGroupSerie.getCheckedRadioButtonId();
@@ -157,8 +160,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                                     "Aceptar",
                                     "Cancelar");
                         }
-                        else {
-                            if (diferenciaVolumenes > 0) {
+                        else if (diferenciaVolumenes > 0){
                             /*
                             Este caso es más sencillo, ya que solo se debe:
                             1.- Determinar la diferencia de volumenes
@@ -168,7 +170,10 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                             showNoticeDialog("Esto supondrá insertar tomos en base de datos. ¿Está seguro?",
                                     "Aceptar",
                                     "Cancelar");
-                            }
+                        } else {
+                            showNoticeDialog(getString(R.string.editarSerieConValores),
+                                    getString(R.string.strAceptar),
+                                    getString(R.string.strCancelar));
                         }
                     }
                     else
@@ -176,6 +181,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                         //copiamos los valores a un ContentValues para insertar
                         ContentValues cv = new ContentValues();
                         cv.put(Serie.NOMBRE_SERIE,nombreSerie);
+                        cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
                         cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
                         cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
                         cv.put(Serie.NUM_VOLUMENES, numeroVol);
@@ -258,7 +264,8 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
             case URL_EDIT_SERIE:
                 return new CursorLoader(getActivity(),
                         url_edit_serie,
-                        new String[]{Serie._ID,Serie.NOMBRE_SERIE, Serie.ID_ESTADO_SERIE, Serie.ID_EDITORIAL,
+                        new String[]{Serie._ID,Serie.NOMBRE_SERIE, Serie.NOMBRE_ORIGINAL_SERIE,
+                                     Serie.ID_ESTADO_SERIE, Serie.ID_EDITORIAL,
                                      Serie.ID_ESTADO_COLECCION, Serie.NUM_VOLUMENES, Serie.ID_GENERO},
                         null,//selection
                         null,//selectionArgs
@@ -269,7 +276,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                         new String[]{Genero._ID, Genero.NOMBRE_GENERO},
                         null,//selection
                         null,//selectionArgs
-                        Genero.NOMBRE_GENERO);//orderBy
+                        null);//orderBy
             default:
                 return null;
         }
@@ -320,6 +327,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         if(cursor.moveToFirst())
         {
             int nombreSerie = cursor.getColumnIndex(Serie.NOMBRE_SERIE);
+            int nombreOriginalSerie = cursor.getColumnIndex(Serie.NOMBRE_ORIGINAL_SERIE);
             int numeroVol = cursor.getColumnIndex(Serie.NUM_VOLUMENES);
             int idEstColeccion = cursor.getColumnIndex(Serie.ID_ESTADO_COLECCION);
             int idEditorial = cursor.getColumnIndex(Serie.ID_EDITORIAL);
@@ -327,6 +335,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
             int idGenero = cursor.getColumnIndex(Serie.ID_GENERO);
             do {
                 edtNombreSerie.setText(cursor.getString(nombreSerie));
+                edtNombreOriginalSerie.setText(cursor.getString(nombreOriginalSerie));
                 spnEditorial.setSelection(cursor.getInt(idEditorial)-1);
                 spnGenero.setSelection(cursor.getInt(idGenero)-1);
                 int checkeado = cursor.getInt(idEstadoSerie);
@@ -407,6 +416,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
 
         //recogemos los valores introducidos por el usuario
         String nombreSerie = edtNombreSerie.getText().toString();
+        String nombreOriginalSerie = edtNombreOriginalSerie.getText().toString();
         long idEditorial = spnEditorial.getSelectedItemId();
         int checkedRadioButtonId = radGroupSerie.getCheckedRadioButtonId();
         long idEstadoSerie = Long.MIN_VALUE;
@@ -426,6 +436,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         //copiamos los valores a un ContentValues para insertar
         ContentValues cv = new ContentValues();
         cv.put(Serie.NOMBRE_SERIE,nombreSerie);
+        cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
         cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
         cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
         cv.put(Serie.NUM_VOLUMENES, numeroVol);
