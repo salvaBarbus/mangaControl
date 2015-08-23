@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.FragmentAbout">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left|top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_name"
+            android:id="@+id/txtAppName"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="43dp"
+            android:textStyle="bold|italic" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgAppIcon"
+            android:layout_below="@+id/txtAppName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtAppDescription"
+            android:id="@+id/txtAppDescription"
+            android:layout_below="@+id/imgAppIcon"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:layout_marginTop="13dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp" />
+    </RelativeLayout>
+</FrameLayout>

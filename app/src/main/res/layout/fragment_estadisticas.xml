@@ -1,0 +1,130 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.FragmentEstadisticas">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="left|top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitNumSeries"
+            android:id="@+id/txtLitNumSeries"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtNumSeries"
+            android:layout_below="@+id/txtLitNumSeries"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitNumEditoriales"
+            android:id="@+id/txtLitNumEditorial"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/txtNumSeries"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtNumEditorial"
+            android:layout_below="@+id/txtLitNumEditorial"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitTotalTomos"
+            android:id="@+id/txtLitTotalTomos"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/txtNumEditorial"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtTotalTomos"
+            android:layout_below="@+id/txtLitTotalTomos"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitEditMasTomos"
+            android:id="@+id/txtLitEditMasTomos"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/txtTotalTomos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtEditMasTomos"
+            android:layout_below="@+id/txtLitEditMasTomos"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitGeneroMasTomos"
+            android:id="@+id/txtLitGeneroMasTomos"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/txtEditMasTomos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtGeneroMasTomos"
+            android:layout_below="@+id/txtLitGeneroMasTomos"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtLitSerieMasLarga"
+            android:id="@+id/txtLitSerieMasLarga"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/txtGeneroMasTomos"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/txtBlankString"
+            android:id="@+id/txtSerieMasLarga"
+            android:layout_below="@+id/txtLitSerieMasLarga"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</FrameLayout>
