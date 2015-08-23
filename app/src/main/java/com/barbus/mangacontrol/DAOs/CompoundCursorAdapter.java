@@ -2,10 +2,7 @@ package com.barbus.mangacontrol.DAOs;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -13,7 +10,6 @@ import android.widget.CompoundButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.barbus.mangacontrol.MainActivity;
 import com.barbus.mangacontrol.R;
 
 import java.util.ArrayList;
@@ -27,7 +23,6 @@ public class CompoundCursorAdapter extends SimpleCursorAdapter{
     private Context mContext;
     private int[] to;
     private String[] from;
-    private ActionMode mActionMode;
 
     public CompoundCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags) {
         super(context, layout, c, from, to, flags);
@@ -88,7 +83,6 @@ public class CompoundCursorAdapter extends SimpleCursorAdapter{
                         });
                 view.setTag(viewHolder);
                 viewHolder.chkComprar.setTag(getListaElementos().get(position));
-
             }
             else
             {
@@ -135,36 +129,5 @@ public class CompoundCursorAdapter extends SimpleCursorAdapter{
     static class ViewHolder{
         TextView nombreSerie, literalVols, numVol;
         CheckBox chkComprar;
-    }
-
-    class ActionBarCallBack implements ActionMode.Callback {
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            // TODO Auto-generated method stub
-            mode.getMenuInflater().inflate(R.menu.menu_ctx_series, menu);
-            return true;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            // TODO Auto-generated method stub
-
-            mode.setTitle("CheckBox is Checked");
-            return false;
-        }
-
     }
 }

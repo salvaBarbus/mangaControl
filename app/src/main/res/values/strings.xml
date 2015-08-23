@@ -80,5 +80,4 @@
     <string name="confirmacion_insertar_tomos">Esto supondrá insertar tomos en base de datos. ¿Está seguro?</string>
     <string name="confirmacion_editar_a_pelo">¿Editar serie con estos valores?</string>
     <string name="editar_serie">Editar Serie</string>
-
 </resources>

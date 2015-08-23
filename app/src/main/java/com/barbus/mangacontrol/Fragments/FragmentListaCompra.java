@@ -114,7 +114,6 @@ public class FragmentListaCompra extends Fragment implements LoaderManager.Loade
                 new String[]{Volumen._ID, Volumen.NOMBRE, Volumen.NUMERO},
                 new int[]{R.id.txtNombreSerieListaCompra, R.id.txtNumeroVolListaCompra},
                 0);
-
 //        adapterCompras = new SimpleCursorAdapter(getActivity(),
 //                android.R.layout.simple_list_item_2,
 //                null,

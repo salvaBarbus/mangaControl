@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
-
 import com.barbus.mangacontrol.Fragments.ConfirmDeleteSerie;
 import com.barbus.mangacontrol.Fragments.ConfirmRemoveVolumenesFragment;
 import com.barbus.mangacontrol.Fragments.FragmentAddSerie;
@@ -28,8 +27,6 @@ import com.barbus.mangacontrol.Fragments.FragmentEstadisticas;
 import com.barbus.mangacontrol.Fragments.FragmentListaCompra;
 import com.barbus.mangacontrol.Fragments.FragmentPruebasListas;
 import com.barbus.mangacontrol.Fragments.PruebaListasFragment;
-
-
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, ConfirmRemoveVolumenesFragment.NoticeDialogListener,
         ConfirmDeleteSerie.DeleteSerieListener, PruebaListasFragment.OnFragmentInteractionListener, FragmentPruebasListas.OnFragmentInteractionListener{
