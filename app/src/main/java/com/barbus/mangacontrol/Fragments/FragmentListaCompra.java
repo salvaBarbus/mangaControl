@@ -114,7 +114,6 @@ public class FragmentListaCompra extends Fragment implements LoaderManager.Loade
                 new String[]{Volumen._ID, Volumen.NOMBRE, Volumen.NUMERO},
                 new int[]{R.id.txtNombreSerieListaCompra, R.id.txtNumeroVolListaCompra},
                 0);
-//
 //        adapterCompras = new SimpleCursorAdapter(getActivity(),
 //                android.R.layout.simple_list_item_2,
 //                null,
@@ -125,75 +124,75 @@ public class FragmentListaCompra extends Fragment implements LoaderManager.Loade
         lstTomosCompra.setAdapter(adapterCompras);
         lstTomosCompra.setLongClickable(true);
 
-        lstTomosCompra.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("com.barbus.mangacontrol", "estem dins del long click");
-                if (mActionMode != null) {
-                    return false;
-                }
+//        lstTomosCompra.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+////                Log.d("com.barbus.mangacontrol", "estem dins del long click");
+//                if (mActionMode != null) {
+//                    return false;
+//                }
+//
+//                // Start the CAB using the ActionMode.Callback defined above
+//                mActionMode = getActivity().startActionMode(mActionModeCallback);
+//                view.setSelected(true);
+//                lstTomosCompra.setItemChecked(i, true);
+////                Log.d("com.barbus.mangacontrol", "Seleccionado item en posicion "+i+" con id "+l);
+//                return false;
+//            }
+//        });
 
-                // Start the CAB using the ActionMode.Callback defined above
-                mActionMode = getActivity().startActionMode(mActionModeCallback);
-                view.setSelected(true);
-                lstTomosCompra.setItemChecked(i, true);
-                Log.d("com.barbus.mangacontrol", "Seleccionado item en posicion "+i+" con id "+l);
-                return false;
-            }
-        });
-
-        lstTomosCompra.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-
-            @Override
-            public void onItemCheckedStateChanged(ActionMode mode, int position,
-                                                  long id, boolean checked) {
-                // Here you can do something when items are selected/de-selected,
-                // such as update the title in the CAB
-                Log.d("com.barbus.mangacontrol", "Recibido evento itemcheckedstatechanged para posicion "+position+", id "+id+" y checkeado "+checked);
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                // Respond to clicks on the actions in the CAB
-                StringBuilder sb = new StringBuilder();
-                long[] checkedIds = lstTomosCompra.getCheckedItemIds();
-                String checker = "";
-                for(long l : checkedIds)
-                {
-                    checker+=l+",";
-                }
-                switch (item.getItemId()) {
-                    case R.id.ctxOptionEditSerie:
-//                        deleteSelectedItems();
-                        Log.d("com.barbus.mangacontrol", "CheckedIds="+checker);
-                        mode.finish(); // Action picked, so close the CAB
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                // Inflate the menu for the CAB
-                MenuInflater inflater = mode.getMenuInflater();
-                inflater.inflate(R.menu.menu_ctx_series, menu);
-                return true;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-                // Here you can make any necessary updates to the activity when
-                // the CAB is removed. By default, selected items are deselected/unchecked.
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                // Here you can perform updates to the CAB due to
-                // an invalidate() request
-                return false;
-            }
-        });
+//        lstTomosCompra.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+//
+//            @Override
+//            public void onItemCheckedStateChanged(ActionMode mode, int position,
+//                                                  long id, boolean checked) {
+//                // Here you can do something when items are selected/de-selected,
+//                // such as update the title in the CAB
+////                Log.d("com.barbus.mangacontrol", "Recibido evento itemcheckedstatechanged para posicion "+position+", id "+id+" y checkeado "+checked);
+//            }
+//
+//            @Override
+//            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//                // Respond to clicks on the actions in the CAB
+//                StringBuilder sb = new StringBuilder();
+//                long[] checkedIds = lstTomosCompra.getCheckedItemIds();
+//                String checker = "";
+//                for(long l : checkedIds)
+//                {
+//                    checker+=l+",";
+//                }
+//                switch (item.getItemId()) {
+//                    case R.id.ctxOptionEditSerie:
+////                        deleteSelectedItems();
+////                        Log.d("com.barbus.mangacontrol", "CheckedIds="+checker);
+//                        mode.finish(); // Action picked, so close the CAB
+//                        return true;
+//                    default:
+//                        return false;
+//                }
+//            }
+//
+//            @Override
+//            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//                // Inflate the menu for the CAB
+//                MenuInflater inflater = mode.getMenuInflater();
+//                inflater.inflate(R.menu.menu_ctx_series, menu);
+//                return true;
+//            }
+//
+//            @Override
+//            public void onDestroyActionMode(ActionMode mode) {
+//                // Here you can make any necessary updates to the activity when
+//                // the CAB is removed. By default, selected items are deselected/unchecked.
+//            }
+//
+//            @Override
+//            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//                // Here you can perform updates to the CAB due to
+//                // an invalidate() request
+//                return false;
+//            }
+//        });
 
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,7 +229,7 @@ public class FragmentListaCompra extends Fragment implements LoaderManager.Loade
                     }
                 }
 
-                Toast.makeText(getActivity(), counter+" filas modificadas satisfactoriamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), counter+getString(R.string.tomos_comprados_ok), Toast.LENGTH_LONG).show();
             }
         });
 

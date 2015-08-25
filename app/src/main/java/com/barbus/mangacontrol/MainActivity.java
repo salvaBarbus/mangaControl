@@ -6,46 +6,30 @@ import android.app.ActionBar;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.SearchManager;
-import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.barbus.mangacontrol.Fragments.ConfirmDeleteSerie;
 import com.barbus.mangacontrol.Fragments.ConfirmRemoveVolumenesFragment;
 import com.barbus.mangacontrol.Fragments.FragmentAddSerie;
-import com.barbus.mangacontrol.Fragments.FragmentAddTomo;
 import com.barbus.mangacontrol.Fragments.FragmentControlEditoriales;
 import com.barbus.mangacontrol.Fragments.FragmentControlSeries;
 import com.barbus.mangacontrol.Fragments.FragmentControlTomos;
 import com.barbus.mangacontrol.Fragments.FragmentDbBackup;
 import com.barbus.mangacontrol.Fragments.FragmentEstadisticas;
 import com.barbus.mangacontrol.Fragments.FragmentListaCompra;
-import com.barbus.mangacontrol.Fragments.PruebaFragment;
-
-import java.util.List;
-
-
+import com.barbus.mangacontrol.Fragments.FragmentPruebasListas;
+import com.barbus.mangacontrol.Fragments.PruebaListasFragment;
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, ConfirmRemoveVolumenesFragment.NoticeDialogListener,
-        ConfirmDeleteSerie.DeleteSerieListener, PruebaFragment.OnFragmentInteractionListener{
+        ConfirmDeleteSerie.DeleteSerieListener, PruebaListasFragment.OnFragmentInteractionListener, FragmentPruebasListas.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -109,11 +93,6 @@ public class MainActivity extends Activity
                         .replace(R.id.container, new FragmentDbBackup())
                         .commit();
                 break;
-            case 6:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PruebaFragment.newInstance("hola", "Manola"), "pruebaListas")
-                        .commit();
-                break;
 
             default:
                 fragmentManager.beginTransaction()
@@ -142,8 +121,6 @@ public class MainActivity extends Activity
             case 6:
                 mTitle = getString(R.string.title_section5);
                 break;
-            case 7:
-                mTitle = getString(R.string.title_section7);
         }
     }
 
@@ -205,6 +182,11 @@ public class MainActivity extends Activity
     public void onDeleteDialogNegativeClick(DialogFragment dialog) {
         FragmentControlSeries controlSeries = (FragmentControlSeries) getFragmentManager().findFragmentByTag("controlSeries");
         controlSeries.onDeleteDialogNegativeClick(dialog);
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+//        Log.d("com.barbus.mangacontrol", "Interacted with fragment prueba listas and received the event here");
     }
 
     @Override

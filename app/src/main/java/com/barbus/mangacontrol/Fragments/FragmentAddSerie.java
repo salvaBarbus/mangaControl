@@ -90,6 +90,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
             args.clear();
             args.putLong(Serie._ID, idSerie);
             getLoaderManager().initLoader(URL_EDIT_SERIE, args, this);
+            btnAddSerie.setText(getString(R.string.editar_serie));
         }
 
         adapterEditoriales = new SimpleCursorAdapter(getActivity(),
@@ -156,84 +157,78 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                             2.- Avisar al usuario de qué significará este cambio (borrar volumenes)
                             3.- Si el usuario confirma, borrar los volumenes afectados
                              */
-                            showNoticeDialog("Esto supondrá eliminar tomos de base de datos. ¿Está seguro?",
-                                    "Aceptar",
-                                    "Cancelar");
-                        }
-                        else if (diferenciaVolumenes > 0){
+                            showNoticeDialog(getString(R.string.confirmacion_eliminar_tomos),
+                                    getString(R.string.aceptar),
+                                    getString(R.string.cancelar));
+                        } else if (diferenciaVolumenes > 0){
                             /*
                             Este caso es más sencillo, ya que solo se debe:
                             1.- Determinar la diferencia de volumenes
                             2.- Avisar al usuario que se insertarán X volumenes (con confirmación)
                             3.- Insertar los volumenes nuevos.
                              */
-                            showNoticeDialog("Esto supondrá insertar tomos en base de datos. ¿Está seguro?",
-                                    "Aceptar",
-                                    "Cancelar");
+                            showNoticeDialog(getString(R.string.confirmacion_insertar_tomos),
+                                    getString(R.string.aceptar),
+                                    getString(R.string.cancelar));
+                            } else {
+                                showNoticeDialog(getString(R.string.confirmacion_editar_a_pelo),
+                                        getString(R.string.aceptar),
+                                        getString(R.string.cancelar));
+                            }
                         } else {
-                            showNoticeDialog(getString(R.string.editarSerieConValores),
-                                    getString(R.string.strAceptar),
-                                    getString(R.string.strCancelar));
-                        }
-                    }
-                    else
-                    {
-                        //copiamos los valores a un ContentValues para insertar
-                        ContentValues cv = new ContentValues();
-                        cv.put(Serie.NOMBRE_SERIE,nombreSerie);
-                        cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
-                        cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
-                        cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
-                        cv.put(Serie.NUM_VOLUMENES, numeroVol);
-                        cv.put(Serie.ID_EDITORIAL, idEditorial);
-                        cv.put(Serie.ID_GENERO, idGenero);
+                            //copiamos los valores a un ContentValues para insertar
+                            ContentValues cv = new ContentValues();
+                            cv.put(Serie.NOMBRE_SERIE,nombreSerie);
+                            cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
+                            cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
+                            cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
+                            cv.put(Serie.NUM_VOLUMENES, numeroVol);
+                            cv.put(Serie.ID_EDITORIAL, idEditorial);
+                            cv.put(Serie.ID_GENERO, idGenero);
 
-                        //insertamos los valores en base de datos
-                        url = ContentUris.withAppendedId(Serie.CONTENT_URI, 1);
-                        Uri resultado = cr.insert(url, cv);
-                        String idSerieInsertada = resultado.getLastPathSegment();
-                        Toast.makeText(getActivity(), "Serie "+nombreSerie+" creada satisfactoriamente", Toast.LENGTH_LONG).show();
+                            //insertamos los valores en base de datos
+                            url = ContentUris.withAppendedId(Serie.CONTENT_URI, 1);
+                            Uri resultado = cr.insert(url, cv);
+                            String idSerieInsertada = resultado.getLastPathSegment();
+                            Toast.makeText(getActivity(), getString(R.string.serie_creada_ok)+nombreSerie, Toast.LENGTH_LONG).show();
 
-                        cv.clear();
-                        //insertamos los volumenes
-                        url = ContentUris.withAppendedId(Uri.parse(Volumen.URI), 1);
-                        for (int i=1; i<= numeroVol; i++)
-                        {
-                            cv.put(Volumen.NUMERO, i);
-                            cv.put(Volumen.NOMBRE, nombreSerie);
-                            cv.put(Volumen.ID_TIPO_VOLUMEN, 0);
-                            cv.put(Volumen.ID_SERIE,idSerieInsertada);
-                            cv.put(Volumen.ID_EDITORIAL, idEditorial);
-                            if(estadoCol == 1)
-                            {
-                                //serie Completa, insertamos los tomos con comprado = 1
-                                cv.put(Volumen.COMPRADO, 1);
-                            }
-                            else
-                            {
-                                //serie Incompleta o Abandonada, insertamos los tomos con comprado = 0
-                                cv.put(Volumen.COMPRADO, 0);
-                            }
-                            resultado = cr.insert(url, cv);
                             cv.clear();
+                            //insertamos los volumenes
+                            url = ContentUris.withAppendedId(Uri.parse(Volumen.URI), 1);
+                            for (int i=1; i<= numeroVol; i++)
+                            {
+                                cv.put(Volumen.NUMERO, i);
+                                cv.put(Volumen.NOMBRE, nombreSerie);
+                                cv.put(Volumen.ID_TIPO_VOLUMEN, 0);
+                                cv.put(Volumen.ID_SERIE,idSerieInsertada);
+                                cv.put(Volumen.ID_EDITORIAL, idEditorial);
+                                if(estadoCol == 1)
+                                {
+                                    //serie Completa, insertamos los tomos con comprado = 1
+                                    cv.put(Volumen.COMPRADO, 1);
+                                }
+                                else
+                                {
+                                    //serie Incompleta o Abandonada, insertamos los tomos con comprado = 0
+                                    cv.put(Volumen.COMPRADO, 0);
+                                }
+                                resultado = cr.insert(url, cv);
+                                cv.clear();
+                            }
+                            Toast.makeText(getActivity(), "Insertados "+numeroVol+" tomos satisfactoriamente", Toast.LENGTH_LONG).show();
                         }
-                        Toast.makeText(getActivity(), "Insertados "+numeroVol+" tomos satisfactoriamente", Toast.LENGTH_LONG).show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage(mensajeError)
+                                .setTitle("Error")
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                    }
+                                });
+                        builder.show();
                     }
                 }
-                else
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensajeError)
-                            .setTitle("Error")
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    builder.show();
-                }
-            }
-        });
-
+            });
         return rootView;
     }
 
@@ -446,7 +441,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         //insertamos los valores en base de datos
         url = ContentUris.withAppendedId(Serie.CONTENT_URI, idSerie);
         int resultadoUpdate = cr.update(url, cv, null, null);
-        Toast.makeText(getActivity(), "Serie "+nombreSerie+" modificada satisfactoriamente", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), getString(R.string.serie_modificada_ok)+nombreSerie, Toast.LENGTH_LONG).show();
 
         cv.clear();
 

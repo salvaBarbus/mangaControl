@@ -10,14 +10,16 @@
         android:id="@+id/btnComprar"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lstTomosCompra"
-        android:choiceMode="multipleChoiceModal"
-
+        android:choiceMode="multipleChoice"
         android:layout_below="@+id/btnComprar"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 </RelativeLayout>

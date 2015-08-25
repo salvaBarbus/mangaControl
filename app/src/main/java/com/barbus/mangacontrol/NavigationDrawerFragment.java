@@ -113,8 +113,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section3),
                         getString(R.string.title_section4),
                         getString(R.string.title_section6),
-                        getString(R.string.title_section5),
-                        getString(R.string.title_section7)
+                        getString(R.string.title_section5)
 
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -259,7 +258,6 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_about) {
-            Toast.makeText(getActivity(), "Escogida la opción About", Toast.LENGTH_LONG).show();
             getFragmentManager().beginTransaction()
                     .replace(R.id.container, FragmentAbout.newInstance("hola","Manola"), "fragmentAbout")
                     .addToBackStack("fragmentAbout")

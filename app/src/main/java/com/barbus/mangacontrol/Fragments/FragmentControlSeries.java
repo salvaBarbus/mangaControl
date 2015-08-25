@@ -180,7 +180,7 @@ public class FragmentControlSeries extends Fragment implements LoaderManager.Loa
             url = Uri.parse(Volumen.URI);
             tomosDeleteados = cr.delete(url, Volumen.ID_SERIE+" = ?", new String[]{String.valueOf(this.idSerie)});
         }
-        String mensaje = "Resultado final:\n "+seriesDeleteadas+" series Borradas.\n"+tomosDeleteados+" tomos borrados";
+        String mensaje = getString(R.string.resultado_final)+"\n "+seriesDeleteadas+getString(R.string.series_borradas)+"\n"+tomosDeleteados+getString(R.string.tomos_borrados);
         Toast.makeText(getActivity(), mensaje, Toast.LENGTH_LONG).show();
     }
 

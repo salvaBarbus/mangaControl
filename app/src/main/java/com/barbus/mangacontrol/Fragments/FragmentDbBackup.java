@@ -50,9 +50,9 @@ public class FragmentDbBackup extends Fragment {
             public void onClick(View view) {
                 try {
                     backupDatabase();
-                    Toast.makeText(getActivity(), "Copia de Seguridad realizada correctamente", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.copia_seguridad_ok), Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "No se ha podido realizar la copia de seguridad", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.copia_seguridad_ko), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -63,14 +63,14 @@ public class FragmentDbBackup extends Fragment {
                 //performFileSearch();
                 try {
                     loadDatabaseBackup();
-                    Toast.makeText(getActivity(), "Copia de Seguridad cargada correctamente", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.carga_backup_ok), Toast.LENGTH_LONG).show();
                 }catch(FileNotFoundException ex)
                 {
-                    Toast.makeText(getActivity(), "No se ha encontrado el fichero de copia de seguridad", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.carga_backup_ko_no_file), Toast.LENGTH_LONG).show();
                 }
                 catch(IOException ex)
                 {
-                    Toast.makeText(getActivity(), "No se ha podido cargar la copia de seguridad", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.carga_backup_ko), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -157,7 +157,7 @@ public class FragmentDbBackup extends Fragment {
             Uri uri = null;
             if (data != null) {
                 uri = data.getData();
-                Log.d("com.barbus.mangacontrol", "Uri: " + uri.toString());
+//                Log.d("com.barbus.mangacontrol", "Uri: " + uri.toString());
                 //showImage(uri);
             }
         }

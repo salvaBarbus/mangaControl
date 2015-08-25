@@ -175,7 +175,7 @@ public class CompundTomoCursorAdapter extends SimpleCursorAdapter{
 
         // This is called when doInBackground() is finished
         protected void onPostExecute(Long result) {
-            Toast.makeText(mContext, result+" tomo modificado correctamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, result+mContext.getString(R.string.tomo_modificado_ok), Toast.LENGTH_SHORT).show();
         }
     }
 }

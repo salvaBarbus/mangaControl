@@ -109,7 +109,7 @@ public class FragmentControlEditoriales extends Fragment implements LoaderManage
                 ContentResolver cr = getActivity().getContentResolver();
                 Uri url = Uri.parse("content://com.barbus.controlmanga.contentproviders/editoriales/"+adapter.id);
                 int rowsDeleted = cr.delete(url, null, null);
-                Toast.makeText(getActivity(), rowsDeleted+" filas borradas satisfactoriamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), rowsDeleted+getString(R.string.filas_borradas_ok), Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);

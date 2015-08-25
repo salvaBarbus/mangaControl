@@ -60,8 +60,25 @@
     <string name="about">Acerca de...</string>
     <string name="notYetImplemented">Aún por implementar</string>
     <string name="txtNombreOriginalSerie">Nombre Original de la Serie</string>
-    <string name="editarSerieConValores">Editar serie con estos valores?</string>
-    <string name="strAceptar">Aceptar</string>
-    <string name="strCancelar">Cancelar</string>
-
+    <string name="tomo_modificado_ok">tomo modificado correctamente</string>
+    <string name="serie_creada_ok">Creada satisfactoriamente la serie:</string>
+    <string name="serie_modificada_ok">Modificada satisfactoriamente la serie:</string>
+    <string name="filas_borradas_ok">filas borradas satisfactoriamente</string>
+    <string name="resultado_final">Resultado final:</string>
+    <string name="series_borradas">series borradas.</string>
+    <string name="copia_seguridad_ok">Copia de Seguridad realizada correctamente</string>
+    <string name="copia_seguridad_ko">No se ha podido realizar la copia de seguridad</string>
+    <string name="carga_backup_ok">Copia de Seguridad cargada correctamente</string>
+    <string name="carga_backup_ko_no_file">No se ha encontrado el fichero de copia de seguridad</string>
+    <string name="carga_backup_ko">No se ha podido cargar la copia de seguridad</string>
+    <string name="tomos_comprados_ok">tomos comprados satisfactoriamente</string>
+    <string name="confirmacion_eliminar_tomos">Esto supondrá eliminar tomos de base de datos. ¿Está seguro?</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmacion_insertar_tomos">Esto supondrá insertar tomos en base de datos. ¿Está seguro?</string>
+    <string name="confirmacion_editar_a_pelo">Editar serie con estos valores?</string>
+    <string name="tomos_borrados"> tomos borrados.</string>
+    <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
+    <string name="title_section7">Prueba listas</string>
+    <string name="editar_serie">Editar Serie</string>
 </resources>
