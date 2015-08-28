@@ -39,6 +39,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         ConfirmRemoveVolumenesFragment.NoticeDialogListener{
 
     private EditText edtNombreSerie;
+    private EditText edtNombreOriginalSerie;
     private Spinner spnEditorial;
     private RadioGroup radGroupSerie;
     private EditText edtNumeroVolumenes;
@@ -67,6 +68,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         View rootView = inflater.inflate(R.layout.fragment_add_serie, container, false);
 
         edtNombreSerie = (EditText) rootView.findViewById(R.id.edtNombreSerie);
+        edtNombreOriginalSerie = (EditText) rootView.findViewById(R.id.edtNombreOriginalSerie);
         spnEditorial = (Spinner) rootView.findViewById(R.id.spnEditorial);
         radGroupSerie = (RadioGroup) rootView.findViewById(R.id.radGroupSerie);
         edtNumeroVolumenes = (EditText) rootView.findViewById(R.id.edtNumeroVol);
@@ -126,6 +128,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                 {
                     //recogemos los valores introducidos por el usuario
                     String nombreSerie = edtNombreSerie.getText().toString();
+                    String nombreOriginalSerie = edtNombreOriginalSerie.getText().toString();
                     long idEditorial = spnEditorial.getSelectedItemId();
                     long idGenero = spnGenero.getSelectedItemId();
                     int checkedRadioButtonId = radGroupSerie.getCheckedRadioButtonId();
@@ -157,9 +160,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                             showNoticeDialog(getString(R.string.confirmacion_eliminar_tomos),
                                     getString(R.string.aceptar),
                                     getString(R.string.cancelar));
-                        }
-                        else {
-                            if (diferenciaVolumenes > 0) {
+                        } else if (diferenciaVolumenes > 0){
                             /*
                             Este caso es más sencillo, ya que solo se debe:
                             1.- Determinar la diferencia de volumenes
@@ -169,70 +170,65 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
                             showNoticeDialog(getString(R.string.confirmacion_insertar_tomos),
                                     getString(R.string.aceptar),
                                     getString(R.string.cancelar));
+                            } else {
+                                showNoticeDialog(getString(R.string.confirmacion_editar_a_pelo),
+                                        getString(R.string.aceptar),
+                                        getString(R.string.cancelar));
                             }
-                            else
-                            {
-                                showNoticeDialog(getString(R.string.confirmacion_editar_a_pelo), getString(R.string.aceptar), getString(R.string.cancelar));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //copiamos los valores a un ContentValues para insertar
-                        ContentValues cv = new ContentValues();
-                        cv.put(Serie.NOMBRE_SERIE,nombreSerie);
-                        cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
-                        cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
-                        cv.put(Serie.NUM_VOLUMENES, numeroVol);
-                        cv.put(Serie.ID_EDITORIAL, idEditorial);
-                        cv.put(Serie.ID_GENERO, idGenero);
+                        } else {
+                            //copiamos los valores a un ContentValues para insertar
+                            ContentValues cv = new ContentValues();
+                            cv.put(Serie.NOMBRE_SERIE,nombreSerie);
+                            cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
+                            cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
+                            cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
+                            cv.put(Serie.NUM_VOLUMENES, numeroVol);
+                            cv.put(Serie.ID_EDITORIAL, idEditorial);
+                            cv.put(Serie.ID_GENERO, idGenero);
 
-                        //insertamos los valores en base de datos
-                        url = ContentUris.withAppendedId(Serie.CONTENT_URI, 1);
-                        Uri resultado = cr.insert(url, cv);
-                        String idSerieInsertada = resultado.getLastPathSegment();
-                        Toast.makeText(getActivity(), getString(R.string.serie_creada_ok)+nombreSerie, Toast.LENGTH_LONG).show();
+                            //insertamos los valores en base de datos
+                            url = ContentUris.withAppendedId(Serie.CONTENT_URI, 1);
+                            Uri resultado = cr.insert(url, cv);
+                            String idSerieInsertada = resultado.getLastPathSegment();
+                            Toast.makeText(getActivity(), getString(R.string.serie_creada_ok)+nombreSerie, Toast.LENGTH_LONG).show();
 
-                        cv.clear();
-                        //insertamos los volumenes
-                        url = ContentUris.withAppendedId(Uri.parse(Volumen.URI), 1);
-                        for (int i=1; i<= numeroVol; i++)
-                        {
-                            cv.put(Volumen.NUMERO, i);
-                            cv.put(Volumen.NOMBRE, nombreSerie);
-                            cv.put(Volumen.ID_TIPO_VOLUMEN, 0);
-                            cv.put(Volumen.ID_SERIE,idSerieInsertada);
-                            cv.put(Volumen.ID_EDITORIAL, idEditorial);
-                            if(estadoCol == 1)
-                            {
-                                //serie Completa, insertamos los tomos con comprado = 1
-                                cv.put(Volumen.COMPRADO, 1);
-                            }
-                            else
-                            {
-                                //serie Incompleta o Abandonada, insertamos los tomos con comprado = 0
-                                cv.put(Volumen.COMPRADO, 0);
-                            }
-                            resultado = cr.insert(url, cv);
                             cv.clear();
+                            //insertamos los volumenes
+                            url = ContentUris.withAppendedId(Uri.parse(Volumen.URI), 1);
+                            for (int i=1; i<= numeroVol; i++)
+                            {
+                                cv.put(Volumen.NUMERO, i);
+                                cv.put(Volumen.NOMBRE, nombreSerie);
+                                cv.put(Volumen.ID_TIPO_VOLUMEN, 0);
+                                cv.put(Volumen.ID_SERIE,idSerieInsertada);
+                                cv.put(Volumen.ID_EDITORIAL, idEditorial);
+                                if(estadoCol == 1)
+                                {
+                                    //serie Completa, insertamos los tomos con comprado = 1
+                                    cv.put(Volumen.COMPRADO, 1);
+                                }
+                                else
+                                {
+                                    //serie Incompleta o Abandonada, insertamos los tomos con comprado = 0
+                                    cv.put(Volumen.COMPRADO, 0);
+                                }
+                                resultado = cr.insert(url, cv);
+                                cv.clear();
+                            }
+                            Toast.makeText(getActivity(), "Insertados "+numeroVol+" tomos satisfactoriamente", Toast.LENGTH_LONG).show();
                         }
-                        Toast.makeText(getActivity(), "Insertados "+numeroVol+" tomos satisfactoriamente", Toast.LENGTH_LONG).show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage(mensajeError)
+                                .setTitle("Error")
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                    }
+                                });
+                        builder.show();
                     }
                 }
-                else
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensajeError)
-                            .setTitle("Error")
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    builder.show();
-                }
-            }
-        });
-
+            });
         return rootView;
     }
 
@@ -263,7 +259,8 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
             case URL_EDIT_SERIE:
                 return new CursorLoader(getActivity(),
                         url_edit_serie,
-                        new String[]{Serie._ID,Serie.NOMBRE_SERIE, Serie.ID_ESTADO_SERIE, Serie.ID_EDITORIAL,
+                        new String[]{Serie._ID,Serie.NOMBRE_SERIE, Serie.NOMBRE_ORIGINAL_SERIE,
+                                     Serie.ID_ESTADO_SERIE, Serie.ID_EDITORIAL,
                                      Serie.ID_ESTADO_COLECCION, Serie.NUM_VOLUMENES, Serie.ID_GENERO},
                         null,//selection
                         null,//selectionArgs
@@ -325,6 +322,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         if(cursor.moveToFirst())
         {
             int nombreSerie = cursor.getColumnIndex(Serie.NOMBRE_SERIE);
+            int nombreOriginalSerie = cursor.getColumnIndex(Serie.NOMBRE_ORIGINAL_SERIE);
             int numeroVol = cursor.getColumnIndex(Serie.NUM_VOLUMENES);
             int idEstColeccion = cursor.getColumnIndex(Serie.ID_ESTADO_COLECCION);
             int idEditorial = cursor.getColumnIndex(Serie.ID_EDITORIAL);
@@ -332,6 +330,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
             int idGenero = cursor.getColumnIndex(Serie.ID_GENERO);
             do {
                 edtNombreSerie.setText(cursor.getString(nombreSerie));
+                edtNombreOriginalSerie.setText(cursor.getString(nombreOriginalSerie));
                 spnEditorial.setSelection(cursor.getInt(idEditorial)-1);
                 spnGenero.setSelection(cursor.getInt(idGenero)-1);
                 int checkeado = cursor.getInt(idEstadoSerie);
@@ -412,6 +411,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
 
         //recogemos los valores introducidos por el usuario
         String nombreSerie = edtNombreSerie.getText().toString();
+        String nombreOriginalSerie = edtNombreOriginalSerie.getText().toString();
         long idEditorial = spnEditorial.getSelectedItemId();
         int checkedRadioButtonId = radGroupSerie.getCheckedRadioButtonId();
         long idEstadoSerie = Long.MIN_VALUE;
@@ -431,6 +431,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
         //copiamos los valores a un ContentValues para insertar
         ContentValues cv = new ContentValues();
         cv.put(Serie.NOMBRE_SERIE,nombreSerie);
+        cv.put(Serie.NOMBRE_ORIGINAL_SERIE, nombreOriginalSerie);
         cv.put(Serie.ID_ESTADO_SERIE,idEstadoSerie);
         cv.put(Serie.ID_ESTADO_COLECCION,estadoCol);
         cv.put(Serie.NUM_VOLUMENES, numeroVol);

@@ -56,6 +56,7 @@
     <string name="txtLitSerieMasLarga">Serie més llarga:</string>
     <string name="title_section6">Estadístiques</string>
     <string name="txtBlankString" />
+    <string name="txtNombreOriginalSerie">Nom Original de la Serie</string>
     <string name="txtLoadBackUp">Carregar Copia de Seguretat de la Base de Dades</string>
     <string name="about">Sobre...</string>
     <string name="notYetImplemented">Encara per implementar</string>

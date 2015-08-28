@@ -59,6 +59,7 @@
     <string name="txtLoadBackUp">Cargar Copia de Seguridad de la Base de Datos</string>
     <string name="about">Acerca de...</string>
     <string name="notYetImplemented">Aún por implementar</string>
+    <string name="txtNombreOriginalSerie">Nombre Original de la Serie</string>
     <string name="tomo_modificado_ok">tomo modificado correctamente</string>
     <string name="serie_creada_ok">Creada satisfactoriamente la serie:</string>
     <string name="serie_modificada_ok">Modificada satisfactoriamente la serie:</string>
@@ -72,10 +73,10 @@
     <string name="carga_backup_ko">No se ha podido cargar la copia de seguridad</string>
     <string name="tomos_comprados_ok">tomos comprados satisfactoriamente</string>
     <string name="confirmacion_eliminar_tomos">Esto supondrá eliminar tomos de base de datos. ¿Está seguro?</string>
-    <string name="aceptar">aceptar</string>
+    <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="confirmacion_insertar_tomos">Esto supondrá insertar tomos en base de datos. ¿Está seguro?</string>
-    <string name="confirmacion_editar_a_pelo">Editar serie amb aquests valors?</string>
+    <string name="confirmacion_editar_a_pelo">Editar serie con estos valores?</string>
     <string name="tomos_borrados"> tomos borrados.</string>
     <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
     <string name="title_section7">Prueba listas</string>

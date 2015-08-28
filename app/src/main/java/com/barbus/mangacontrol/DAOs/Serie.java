@@ -10,6 +10,7 @@ public class Serie {
     //definicion de los nombres de las columnas
     public static final String _ID = "_id";
     public static final String NOMBRE_SERIE = "nombreSerie";
+    public static final String NOMBRE_ORIGINAL_SERIE = "tituloOriginal";
     public static final String ID_ESTADO_SERIE = "idEstadoSerie";
     public static final String ID_ESTADO_COLECCION = "idEstadoColeccion";
     public static final String NUM_VOLUMENES = "numVolumenes";
@@ -23,6 +24,7 @@ public class Serie {
     //variables privadas para almacenar los datos del elemento
     private long id;
     private String nombreSerie;
+    private String nombreOriginalSerie;
     private String idEditorial;
     private long idGenero;
     private long idEstadoSerie;
@@ -32,12 +34,13 @@ public class Serie {
 
     public Serie(){}
 
-    public Serie(long id, String nombreSerie, long idEstadoSerie, long idGenero,
+    public Serie(long id, String nombreSerie, String nombreOriginalSerie, long idEstadoSerie, long idGenero,
                  long idEstadoColeccion, long numVolumenesTotales,
                  long numVolumenesActuales, String idEditorial)
     {
         this.id = id;
         this.nombreSerie = nombreSerie;
+        this.nombreOriginalSerie = nombreOriginalSerie;
         this.idEstadoSerie = idEstadoSerie;
         this.idEstadoColeccion = idEstadoColeccion;
         this.numVolumenesTotales = numVolumenesTotales;
@@ -108,5 +111,13 @@ public class Serie {
 
     public void setIdGenero(long idGenero) {
         this.idGenero = idGenero;
+    }
+
+    public String getNombreOriginalSerie() {
+        return nombreOriginalSerie;
+    }
+
+    public void setNombreOriginalSerie(String nombreOriginalSerie) {
+        this.nombreOriginalSerie = nombreOriginalSerie;
     }
 }

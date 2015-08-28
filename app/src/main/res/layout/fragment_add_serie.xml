@@ -9,7 +9,8 @@
         android:text="@string/txtNombreSerie"
         android:id="@+id/txtNombreSerie"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -17,23 +18,48 @@
         android:id="@+id/edtNombreSerie"
         android:layout_below="@+id/txtNombreSerie"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:inputType="text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtNombreOriginalSerie"
+        android:id="@+id/txtNombreOriginalSerie"
+        android:layout_below="@+id/edtNombreSerie"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtNombreOriginalSerie"
+        android:layout_below="@+id/txtNombreOriginalSerie"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:inputType="text"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txtEditorial"
         android:id="@+id/txtEditorial"
-        android:layout_below="@+id/edtNombreSerie"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/edtNombreOriginalSerie"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spnEditorial"
         android:layout_below="@+id/txtEditorial"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,14 +67,16 @@
         android:text="@string/txtGenero"
         android:id="@+id/txtGenero"
         android:layout_below="@+id/spnEditorial"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spnGenero"
         android:layout_below="@+id/txtGenero"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,13 +84,15 @@
         android:text="@string/txtEstado"
         android:id="@+id/txtEstado"
         android:layout_below="@+id/spnGenero"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <RadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtEstado"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:orientation="horizontal"
         android:id="@+id/radGroupSerie">
 
@@ -88,7 +118,8 @@
         android:text="@string/txtNumeroVolumenes"
         android:id="@+id/txtNumeroVolumenes"
         android:layout_below="@+id/radGroupSerie"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -98,7 +129,9 @@
         android:id="@+id/edtNumeroVol"
         android:layout_below="@+id/txtNumeroVolumenes"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,14 +139,16 @@
         android:text="@string/txtEstadoColeccion"
         android:id="@+id/txtEstadoColeccion"
         android:layout_below="@+id/edtNumeroVol"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spnEstadoCol"
         android:layout_below="@+id/txtEstadoColeccion"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -122,5 +157,7 @@
         android:id="@+id/btnAddSerie"
         android:layout_below="@+id/spnEstadoCol"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

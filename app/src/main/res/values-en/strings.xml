@@ -56,6 +56,7 @@
     <string name="txtLitSerieMasLarga">Longest series:</string>
     <string name="title_section6">Statistics:</string>
     <string name="txtBlankString" />
+    <string name="txtNombreOriginalSerie">Original Series Name</string>
     <string name="txtLoadBackUp">Load Database Backup</string>
     <string name="about">About...</string>
     <string name="notYetImplemented">Not yet implemented.</string>
@@ -72,10 +73,10 @@
     <string name="carga_backup_ko">Couldn\'t load database backup</string>
     <string name="tomos_comprados_ok"> volumes bought successfully.</string>
     <string name="confirmacion_eliminar_tomos">Esto supondrá eliminar tomos de base de datos. ¿Está seguro?</string>
-    <string name="aceptar">aceptar</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">OK</string>
+    <string name="cancelar">Cancel</string>
     <string name="confirmacion_insertar_tomos">Esto supondrá insertar tomos en base de datos. ¿Está seguro?</string>
-    <string name="confirmacion_editar_a_pelo">Edit series with these values</string>
+    <string name="confirmacion_editar_a_pelo">Edit series with these values?</string>
     <string name="tomos_borrados"> deleted volumes</string>
     <string name="txtAppDescription">App for controlling your collection of manga, series and other collectible books.</string>
     <string name="title_section7">List testing</string>

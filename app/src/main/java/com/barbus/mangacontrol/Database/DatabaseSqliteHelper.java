@@ -55,6 +55,19 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
             "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "nombreGenero TEXT )";
 
+    String sqlCreateAutor = "CREATE TABLE autor ("+
+            "_id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+
+            "nombre	TEXT NOT NULL UNIQUE )";
+
+    String sqlCreateLnkAutorSerie = "CREATE TABLE lnkAutorSerie "+
+            "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            "idSerie INTEGER, "+
+            "idAutor INTEGER )";
+
+    //STRINGS PARA UPDATEAR
+
+    String sqlUpdateSerie_addTituloOriginal = "alter table serie add column tituloOriginal text";
+
     public DatabaseSqliteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -141,26 +154,22 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-        //borramos las tablas actuales y las volvemos a crear
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS SERIE");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ESTADOSERIE");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS LNKSERIEVOL");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS TIPORELACION");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS VOLUMEN");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS EDITORIAL");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS TIPOVOLUMEN");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ESTADOCOLECCION");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS GENERO");
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        sqLiteDatabase.execSQL(sqlCreateSerie);
-        sqLiteDatabase.execSQL(sqlCreateEstadoSerie);
-        sqLiteDatabase.execSQL(sqlCreateLnkSerieVol);
-        sqLiteDatabase.execSQL(sqlCreateTiposRelacion);
-        sqLiteDatabase.execSQL(sqlCreateVolumen);
-        sqLiteDatabase.execSQL(sqlCreateEditoriales);
-        sqLiteDatabase.execSQL(sqlCreatetipoVolumen);
-        sqLiteDatabase.execSQL(sqlCreateEstadoColeccion);
-        sqLiteDatabase.execSQL(sqlCreateGenero);
+        int upgradeTo = oldVersion + 1;
+        while (upgradeTo <= newVersion)
+        {
+            switch (upgradeTo)
+            {
+                case 2:
+                    sqLiteDatabase.execSQL(sqlUpdateSerie_addTituloOriginal);
+                    break;
+                case 3:
+                    sqLiteDatabase.execSQL(sqlCreateAutor);
+                    sqLiteDatabase.execSQL(sqlCreateLnkAutorSerie);
+                    break;
+            }
+            upgradeTo++;
+        }
     }
 }

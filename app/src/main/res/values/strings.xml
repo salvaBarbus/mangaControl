@@ -60,6 +60,7 @@
     <string name="about">Acerca de...</string>
     <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
     <string name="notYetImplemented">Aún por implementar</string>
+    <string name="txtNombreOriginalSerie">Nombre Original de la Serie</string>
     <string name="title_section7">Prueba listas</string>
     <string name="tomo_modificado_ok"> tomos modificados correctamente</string>
     <string name="serie_creada_ok">Creada satisfactoriamente la serie: </string>
