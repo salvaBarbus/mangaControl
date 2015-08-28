@@ -27,8 +27,7 @@ public class MangaControlContentProvider extends ContentProvider {
     //Bases de datos:
     private DatabaseSqliteHelper dbsqlhlpr;
     private static final String DB_NAME = "controlManga.db";
-    private static final int DB_VERSION = 1;
-    private static final int DB_VERSION_2 = 2;
+    private static final int DB_VERSION = 3;
     private static final String TABLE_SERIES = "serie";
     private static final String TABLE_ESTADOSERIES = "estadoSerie";
     private static final String TABLE_LNKSERIEVOLS = "lnkserievol";
@@ -87,7 +86,7 @@ public class MangaControlContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        dbsqlhlpr = new DatabaseSqliteHelper(getContext(), DB_NAME, null, DB_VERSION_2);
+        dbsqlhlpr = new DatabaseSqliteHelper(getContext(), DB_NAME, null, DB_VERSION);
         return true;
     }
 

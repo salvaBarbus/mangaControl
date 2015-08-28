@@ -55,6 +55,15 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
             "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "nombreGenero TEXT )";
 
+    String sqlCreateAutor = "CREATE TABLE autor ("+
+            "_id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+
+            "nombre	TEXT NOT NULL UNIQUE )";
+
+    String sqlCreateLnkAutorSerie = "CREATE TABLE lnkAutorSerie "+
+            "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            "idSerie INTEGER, "+
+            "idAutor INTEGER )";
+
     //STRINGS PARA UPDATEAR
 
     String sqlUpdateSerie_addTituloOriginal = "alter table serie add column tituloOriginal text";
@@ -147,8 +156,20 @@ public class DatabaseSqliteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
-        if(newVersion > oldVersion) {
-            sqLiteDatabase.execSQL(sqlUpdateSerie_addTituloOriginal);
+        int upgradeTo = oldVersion + 1;
+        while (upgradeTo <= newVersion)
+        {
+            switch (upgradeTo)
+            {
+                case 2:
+                    sqLiteDatabase.execSQL(sqlUpdateSerie_addTituloOriginal);
+                    break;
+                case 3:
+                    sqLiteDatabase.execSQL(sqlCreateAutor);
+                    sqLiteDatabase.execSQL(sqlCreateLnkAutorSerie);
+                    break;
+            }
+            upgradeTo++;
         }
     }
 }
