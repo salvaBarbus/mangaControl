@@ -79,6 +79,10 @@
     <string name="confirmacion_editar_a_pelo">¿Editar serie con estos valores?</string>
     <string name="tomos_borrados"> volums esborrats</string>
     <string name="txtAppDescription">Aplicació per al control de manga, series i demés llibres col·leccionables.</string>
-    <string name="title_section7">Prova llistes</string>
+    <string name="title_section7">Control d\'Autors</string>
     <string name="editar_serie">Editar Serie</string>
+    <string name="btnAddAutor">Añadir Autor</string>
+    <string name="txtNombreAutor" />
+    <string name="hintNombreAutor">Nombre</string>
+    <string name="txtEditAutor">Editar Autor/a</string>
 </resources>

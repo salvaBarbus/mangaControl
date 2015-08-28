@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 import com.barbus.mangacontrol.Fragments.ConfirmDeleteSerie;
 import com.barbus.mangacontrol.Fragments.ConfirmRemoveVolumenesFragment;
+import com.barbus.mangacontrol.Fragments.ControlAutores;
 import com.barbus.mangacontrol.Fragments.FragmentAddSerie;
 import com.barbus.mangacontrol.Fragments.FragmentControlEditoriales;
 import com.barbus.mangacontrol.Fragments.FragmentControlSeries;
@@ -80,15 +81,20 @@ public class MainActivity extends Activity
                 break;
             case 3:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new FragmentListaCompra(), "listaCompra")
+                        .replace(R.id.container, ControlAutores.newInstance("hola","Manola"))
                         .commit();
                 break;
             case 4:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, FragmentEstadisticas.newInstance("hola","Manola"), "estadisticas")
+                        .replace(R.id.container, new FragmentListaCompra(), "listaCompra")
                         .commit();
                 break;
             case 5:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentEstadisticas.newInstance("hola","Manola"), "estadisticas")
+                        .commit();
+                break;
+            case 6:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new FragmentDbBackup())
                         .commit();
@@ -113,12 +119,15 @@ public class MainActivity extends Activity
                 mTitle = getString(R.string.title_section3);
                 break;
             case 4:
-                mTitle = getString(R.string.title_section4);
+                mTitle = getString(R.string.title_section7);
                 break;
             case 5:
-                mTitle = getString(R.string.title_section6);
+                mTitle = getString(R.string.title_section4);
                 break;
             case 6:
+                mTitle = getString(R.string.title_section6);
+                break;
+            case 7:
                 mTitle = getString(R.string.title_section5);
                 break;
         }
