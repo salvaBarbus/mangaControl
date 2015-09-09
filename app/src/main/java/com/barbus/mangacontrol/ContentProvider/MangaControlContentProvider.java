@@ -37,6 +37,8 @@ public class MangaControlContentProvider extends ContentProvider {
     private static final String TABLE_TIPOSVOLUMEN = "tipovolumen";
     private static final String TABLE_ESTADOCOLECCION = "estadoColeccion";
     private static final String TABLE_GENERO = "genero";
+    private static final String TABLE_AUTOR = "autor";
+    private static final String TABLE_LNKAUTORSERIE = "lnkautorserie";
 
     //Definimos el UriMatcher
     private static final int SERIE = 1;
@@ -57,6 +59,10 @@ public class MangaControlContentProvider extends ContentProvider {
     private static final int ESTADOCOLECCION_ID = 16;
     private static final int GENERO = 17;
     private static final int GENERO_ID = 18;
+    private static final int AUTOR = 19;
+    private static final int AUTOR_ID = 20;
+    private static final int LNKAUTORSERIE = 21;
+    private static final int LNKAUTORSERIE_ID= 22;
 
     private static final UriMatcher uriMatcher;
 
@@ -82,6 +88,10 @@ public class MangaControlContentProvider extends ContentProvider {
         uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "estadoColeccion/#", ESTADOCOLECCION_ID);
         uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "genero", GENERO);
         uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "genero/#", GENERO_ID);
+        uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "autor", AUTOR);
+        uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "autor/#", AUTOR_ID);
+        uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "lnkAutorSerie", LNKAUTORSERIE);
+        uriMatcher.addURI("com.barbus.controlmanga.contentproviders", "lnkAutorSerie/#", LNKAUTORSERIE_ID);
     }
 
     @Override
@@ -159,6 +169,20 @@ public class MangaControlContentProvider extends ContentProvider {
                 break;
             case GENERO_ID:
                 table = TABLE_GENERO;
+                where = "_id="+uri.getLastPathSegment();
+                break;
+            case AUTOR:
+                table = TABLE_AUTOR;
+                break;
+            case AUTOR_ID:
+                table = TABLE_AUTOR;
+                where = "_id="+uri.getLastPathSegment();
+                break;
+            case LNKAUTORSERIE:
+                table = TABLE_LNKAUTORSERIE;
+                break;
+            case LNKAUTORSERIE_ID:
+                table = TABLE_LNKAUTORSERIE;
                 where = "_id="+uri.getLastPathSegment();
                 break;
             default:
@@ -250,6 +274,14 @@ public class MangaControlContentProvider extends ContentProvider {
                 return "vnd.android.cursor.dir/vnd.barbus.genero";
             case GENERO_ID:
                 return "vnd.android.cursor.item/vnd.barbus.genero";
+            case AUTOR:
+                return "vnd.android.cursor.dir/vnd.barbus.autor";
+            case AUTOR_ID:
+                return "vnd.android.cursor.item/vnd.barbus.autor";
+            case LNKAUTORSERIE:
+                return "vnd.android.cursor.dir/vnd.barbus.lnkautorserie";
+            case LNKAUTORSERIE_ID:
+                return "vnd.android.cursor.item/vnd.barbus.lnkautorserie";
 
             default:
                 return null;
@@ -292,6 +324,12 @@ public class MangaControlContentProvider extends ContentProvider {
                 break;
             case GENERO_ID:
                 table = TABLE_GENERO;
+                break;
+            case AUTOR_ID:
+                table = TABLE_AUTOR;
+                break;
+            case LNKAUTORSERIE_ID:
+                table = TABLE_LNKAUTORSERIE;
                 break;
 
             default:
@@ -351,6 +389,14 @@ public class MangaControlContentProvider extends ContentProvider {
                 table = TABLE_GENERO;
                 where = "_id="+uri.getLastPathSegment();
                 break;
+            case AUTOR_ID:
+                table = TABLE_AUTOR;
+                where = "_id="+uri.getLastPathSegment();
+                break;
+            case LNKAUTORSERIE_ID:
+                table = TABLE_LNKAUTORSERIE;
+                where = "_id="+uri.getLastPathSegment();
+                break;
 
             default:
                 break;
@@ -405,6 +451,14 @@ public class MangaControlContentProvider extends ContentProvider {
                 break;
             case GENERO_ID:
                 table = TABLE_GENERO;
+                where = "_id="+uri.getLastPathSegment();
+                break;
+            case AUTOR_ID:
+                table = TABLE_AUTOR;
+                where = "_id="+uri.getLastPathSegment();
+                break;
+            case LNKAUTORSERIE_ID:
+                table = TABLE_LNKAUTORSERIE;
                 where = "_id="+uri.getLastPathSegment();
                 break;
 

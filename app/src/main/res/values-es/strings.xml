@@ -79,6 +79,15 @@
     <string name="confirmacion_editar_a_pelo">Editar serie con estos valores?</string>
     <string name="tomos_borrados"> tomos borrados.</string>
     <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
-    <string name="title_section7">Prueba listas</string>
+    <string name="title_section7">Control de Autores</string>
     <string name="editar_serie">Editar Serie</string>
+    <string name="btnAddAutor">Añadir Autor</string>
+    <string name="txtNombreAutor" >Nombre del autor o autora</string>
+    <string name="hintNombreAutor">Nombre</string>
+    <string name="txtEditAutor">Editar Autor/a</string>
+    <string name="ctxEditAutor">Editar Autor/a</string>
+    <string name="ctxDeleteAutor">Eliminar Autor/a</string>
+    <string name="authorUpdateSuccess">Autor/a editado satisfactoriamente</string>
+    <string name="authorUpdateFailure">Algo ha fallado editando el autor o autora: </string>
+    <string name="updateAuthorMessage">Editar autor/a con estos valores?</string>
 </resources>

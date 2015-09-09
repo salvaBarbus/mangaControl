@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.barbus.mangacontrol.Fragments.Autor"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtNombreAutor"
+        android:id="@+id/txtNombreAutor" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/hintNombreAutor"
+        android:ems="10"
+        android:id="@+id/edtNombreAutor" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnAddAutor"
+        android:id="@+id/btnAcceptAutor" />
+</LinearLayout>

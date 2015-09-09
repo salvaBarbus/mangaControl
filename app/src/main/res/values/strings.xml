@@ -61,7 +61,7 @@
     <string name="txtAppDescription">Aplicación para el control de mangas, series, y demás libros coleccionables</string>
     <string name="notYetImplemented">Aún por implementar</string>
     <string name="txtNombreOriginalSerie">Nombre Original de la Serie</string>
-    <string name="title_section7">Prueba listas</string>
+    <string name="title_section7">Control de Autores</string>
     <string name="tomo_modificado_ok"> tomos modificados correctamente</string>
     <string name="serie_creada_ok">Creada satisfactoriamente la serie: </string>
     <string name="serie_modificada_ok">Modificada satisfactoriamente la serie: </string>
@@ -81,4 +81,13 @@
     <string name="confirmacion_insertar_tomos">Esto supondrá insertar tomos en base de datos. ¿Está seguro?</string>
     <string name="confirmacion_editar_a_pelo">¿Editar serie con estos valores?</string>
     <string name="editar_serie">Editar Serie</string>
+    <string name="btnAddAutor">Añadir Autor</string>
+    <string name="txtNombreAutor">Nombre del/la Autor/a</string>
+    <string name="hintNombreAutor">Nombre</string>
+    <string name="txtEditAutor">Editar Autor/a</string>
+    <string name="ctxEditAutor">Editar Autor/a</string>
+    <string name="ctxDeleteAutor">Eliminar Autor/a</string>
+    <string name="authorUpdateSuccess">Author successfully updated:</string>
+    <string name="authorUpdateFailure">Something went wrong while updating author:</string>
+    <string name="updateAuthorMessage">Update author with these values?</string>
 </resources>
