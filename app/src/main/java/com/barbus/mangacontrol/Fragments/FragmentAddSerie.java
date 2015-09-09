@@ -13,7 +13,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ import com.barbus.mangacontrol.R;
  * Created by SalvadorGiralt on 7/07/14 for ${PROJECT_NAME}
  */
 public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,
-        ConfirmRemoveVolumenesFragment.NoticeDialogListener{
+        ConfirmFragment.NoticeDialogListener{
 
     private EditText edtNombreSerie;
     private EditText edtNombreOriginalSerie;
@@ -401,7 +400,7 @@ public class FragmentAddSerie extends Fragment implements LoaderManager.LoaderCa
 
     public void showNoticeDialog(String mensaje, String botonPositivo, String botonNegativo) {
         // Create an instance of the dialog fragment and show it
-        DialogFragment dialog = ConfirmRemoveVolumenesFragment.newInstance(mensaje, botonPositivo, botonNegativo);
+        DialogFragment dialog = ConfirmFragment.newInstance(mensaje, botonPositivo, botonNegativo);
         dialog.show(getFragmentManager(), "ConfirmFragment");
     }
 

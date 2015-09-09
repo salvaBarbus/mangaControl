@@ -82,7 +82,12 @@
     <string name="title_section7">Author Control</string>
     <string name="editar_serie">Editar Serie</string>
     <string name="btnAddAutor">Añadir Autor</string>
-    <string name="txtNombreAutor" />
+    <string name="txtNombreAutor" >Author Name</string>
     <string name="hintNombreAutor">Nombre</string>
     <string name="txtEditAutor">Editar Autor/a</string>
+    <string name="ctxEditAutor">Editar Autor</string>
+    <string name="ctxDeleteAutor">Delete Author</string>
+    <string name="authorUpdateSuccess">Author successfully updated:</string>
+    <string name="authorUpdateFailure">Something went wrong while updating author:</string>
+    <string name="updateAuthorMessage">Update author with these values?</string>
 </resources>

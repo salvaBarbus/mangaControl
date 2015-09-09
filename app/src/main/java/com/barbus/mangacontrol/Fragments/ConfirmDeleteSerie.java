@@ -21,6 +21,7 @@ import com.barbus.mangacontrol.R;
  * create an instance of this fragment.
  *
  */
+//TODO: Think about removing this fragment now that we have reworked the confirmation fragment
 public class ConfirmDeleteSerie extends DialogFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_MENSAJE = "mensaje";

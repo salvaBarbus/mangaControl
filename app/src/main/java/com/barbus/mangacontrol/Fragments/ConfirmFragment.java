@@ -11,13 +11,13 @@ import android.app.Fragment;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ConfirmRemoveVolumenesFragment.NoticeDialogListener} interface
+ * {@link ConfirmFragment.NoticeDialogListener} interface
  * to handle interaction events.
- * Use the {@link ConfirmRemoveVolumenesFragment#newInstance} factory method to
+ * Use the {@link ConfirmFragment#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class ConfirmRemoveVolumenesFragment extends DialogFragment {
+public class ConfirmFragment extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_MENSAJE = "mensaje";
@@ -41,11 +41,11 @@ public class ConfirmRemoveVolumenesFragment extends DialogFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ConfirmRemoveVolumenesFragment.
+     * @return A new instance of fragment ConfirmFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ConfirmRemoveVolumenesFragment newInstance(String param1, String param2, String param3) {
-        ConfirmRemoveVolumenesFragment fragment = new ConfirmRemoveVolumenesFragment();
+    public static ConfirmFragment newInstance(String param1, String param2, String param3) {
+        ConfirmFragment fragment = new ConfirmFragment();
         Bundle args = new Bundle();
         args.putString(ARG_MENSAJE, param1);
         args.putString(ARG_POSITIVO, param2);
@@ -53,7 +53,7 @@ public class ConfirmRemoveVolumenesFragment extends DialogFragment {
         fragment.setArguments(args);
         return fragment;
     }
-    public ConfirmRemoveVolumenesFragment() {
+    public ConfirmFragment() {
         // Required empty public constructor
     }
 
@@ -91,12 +91,12 @@ public class ConfirmRemoveVolumenesFragment extends DialogFragment {
         builder.setMessage(mParam1)
                 .setPositiveButton(mParam2, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(ConfirmRemoveVolumenesFragment.this);
+                        mListener.onDialogPositiveClick(ConfirmFragment.this);
                     }
                 })
                 .setNegativeButton(mParam3, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(ConfirmRemoveVolumenesFragment.this);
+                        mListener.onDialogNegativeClick(ConfirmFragment.this);
                     }
                 });
         // Create the AlertDialog object and return it

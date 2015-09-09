@@ -10,13 +10,19 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
+import com.barbus.mangacontrol.DAOs.AutorDAO;
 import com.barbus.mangacontrol.MainActivity;
 import com.barbus.mangacontrol.R;
 
@@ -104,6 +110,8 @@ public class ControlAutores extends Fragment implements LoaderManager.LoaderCall
 
         lstAutores.setAdapter(mAdapter);
 
+        registerForContextMenu(lstAutores);
+
         getLoaderManager().initLoader(URL_LOADER, null, this);
 
         return rootView;
@@ -118,6 +126,42 @@ public class ControlAutores extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater = getActivity().getMenuInflater();
+        menuInflater.inflate(R.menu.menu_ctx_autores, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo adapter = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()) {
+            case R.id.ctxOptionEditAutor:
+                Autor autor = new Autor();
+                FragmentManager fragmentManager = getFragmentManager();
+                Bundle args = new Bundle();
+                args.putLong("idAutor", adapter.id);
+                autor.setArguments(args);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, autor, "listaAutores")
+                        .addToBackStack("listaAutores")
+                        .commit();
+                return true;
+
+            case R.id.ctxOptionDeleteAutor:
+                ContentResolver contentResolver = getActivity().getContentResolver();
+                Uri url = AutorDAO.getContentUriWithAppendedId(adapter.id);
+                int deletedRows = cr.delete(url, null, null);
+                Toast.makeText(getActivity(), deletedRows+getString(R.string.filas_borradas_ok),
+                        Toast.LENGTH_LONG).show();
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override

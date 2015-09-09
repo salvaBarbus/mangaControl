@@ -2,6 +2,7 @@ package com.barbus.mangacontrol.Fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -28,7 +29,8 @@ import com.barbus.mangacontrol.R;
  * Use the {@link Autor#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Autor extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class Autor extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> ,
+        ConfirmFragment.NoticeDialogListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,6 +43,7 @@ public class Autor extends Fragment implements LoaderManager.LoaderCallbacks<Cur
     private EditText edtNombreAutor;
     private Button btnAddAutor;
     private static final int URL_AUTORES = 0;
+    private static final int URL_EDIT_AUTORES = 1;
     private String mensajeError = "";
     private Uri url;
     private ContentResolver cr;
@@ -106,11 +109,19 @@ public class Autor extends Fragment implements LoaderManager.LoaderCallbacks<Cur
                     ContentValues contentValues = new ContentValues();
                     contentValues.put(AutorDAO.NOMBRE_AUTOR, nombreAutor);
 
-                    //hacemos las operaciones necesarias en base de datos
-                    url = ContentUris.withAppendedId(AutorDAO.CONTENT_URI, 1);
-                    Uri resultado = cr.insert(url, contentValues);
-                    String idAutorInsertado = resultado.getLastPathSegment();
-                    Toast.makeText(getActivity(), "Creado satisfactoriamente el autor " + nombreAutor, Toast.LENGTH_LONG).show();
+                    if (args != null) {
+                        //update case
+                        showNoticeDialog(getString(R.string.updateAuthorMessage),
+                                getString(R.string.aceptar),
+                                getString(R.string.cancelar));
+                    } else {
+                        //insert case
+                        //hacemos las operaciones necesarias en base de datos
+                        url = ContentUris.withAppendedId(AutorDAO.CONTENT_URI, 1);
+                        Uri resultado = cr.insert(url, contentValues);
+                        String idAutorInsertado = resultado.getLastPathSegment();
+                        Toast.makeText(getActivity(), "Creado satisfactoriamente el autor " + nombreAutor, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setMessage(mensajeError)
@@ -186,4 +197,38 @@ public class Autor extends Fragment implements LoaderManager.LoaderCallbacks<Cur
 
     }
 
+    public void showNoticeDialog(String mensaje, String botonPositivo, String botonNegativo) {
+        // Create an instance of the dialog fragment and show it
+        DialogFragment dialog = ConfirmFragment.newInstance(mensaje, botonPositivo, botonNegativo);
+        dialog.show(getFragmentManager(), "ConfirmEditAuthor");
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        //get the field values and put them in a ContentValues to do the update
+        //at this point, the values are already validates by the isValidForInsertion method
+        String authorName = edtNombreAutor.getText().toString();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(AutorDAO.NOMBRE_AUTOR, authorName);
+
+        //update the values in the database
+        url = AutorDAO.getContentUriWithAppendedId(idAutor);
+        int updateResult = cr.update(url, contentValues, null, null);
+        if(updateResult > 0) {
+            //all went well
+            Toast.makeText(getActivity(), getString(R.string.authorUpdateSuccess)+authorName,
+                    Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            //something went wrong
+            Toast.makeText(getActivity(), getString(R.string.authorUpdateFailure)+authorName,
+                    Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
+    }
 }

@@ -8,7 +8,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
+
+import com.barbus.mangacontrol.Fragments.Autor;
 import com.barbus.mangacontrol.Fragments.ConfirmDeleteSerie;
-import com.barbus.mangacontrol.Fragments.ConfirmRemoveVolumenesFragment;
+import com.barbus.mangacontrol.Fragments.ConfirmFragment;
 import com.barbus.mangacontrol.Fragments.ControlAutores;
 import com.barbus.mangacontrol.Fragments.FragmentAddSerie;
 import com.barbus.mangacontrol.Fragments.FragmentControlEditoriales;
@@ -29,7 +30,7 @@ import com.barbus.mangacontrol.Fragments.FragmentListaCompra;
 import com.barbus.mangacontrol.Fragments.FragmentPruebasListas;
 import com.barbus.mangacontrol.Fragments.PruebaListasFragment;
 public class MainActivity extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ConfirmRemoveVolumenesFragment.NoticeDialogListener,
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ConfirmFragment.NoticeDialogListener,
         ConfirmDeleteSerie.DeleteSerieListener, PruebaListasFragment.OnFragmentInteractionListener, FragmentPruebasListas.OnFragmentInteractionListener{
 
     /**
@@ -170,15 +171,27 @@ public class MainActivity extends Activity
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
 //        Toast.makeText(this, "El usuario ha dicho que sí.", Toast.LENGTH_SHORT).show();
-        FragmentAddSerie editSerie = (FragmentAddSerie) getFragmentManager().findFragmentByTag("editSerieFragment");
-        editSerie.onDialogPositiveClick(dialog);
+        //TODO: rework this method to be a central dialog positive hub
+        if (!dialog.getTag().equals("ConfirmEditAuthor")) {
+            FragmentAddSerie editSerie = (FragmentAddSerie) getFragmentManager().findFragmentByTag("editSerieFragment");
+            editSerie.onDialogPositiveClick(dialog);
+        } else {
+            Autor autor = (Autor) getFragmentManager().findFragmentByTag("listaAutores");
+            autor.onDialogPositiveClick(dialog);
+        }
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialog) {
 //        Toast.makeText(this, "El usuario ha dicho que no.", Toast.LENGTH_SHORT).show();
-        FragmentAddSerie editSerie = (FragmentAddSerie) getFragmentManager().findFragmentByTag("editSerieFragment");
-        editSerie.onDialogNegativeClick(dialog);
+        //TODO: rework this method to be a central dialog negative hub
+        if (!dialog.getTag().equals("ConfirmEditAuthor")) {
+            FragmentAddSerie editSerie = (FragmentAddSerie) getFragmentManager().findFragmentByTag("editSerieFragment");
+            editSerie.onDialogNegativeClick(dialog);
+        } else {
+            Autor autor = (Autor) getFragmentManager().findFragmentByTag("listaAutores");
+            autor.onDialogNegativeClick(dialog);
+        }
     }
 
     @Override

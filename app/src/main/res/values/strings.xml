@@ -85,4 +85,9 @@
     <string name="txtNombreAutor">Nombre del/la Autor/a</string>
     <string name="hintNombreAutor">Nombre</string>
     <string name="txtEditAutor">Editar Autor/a</string>
+    <string name="ctxEditAutor">Editar Autor/a</string>
+    <string name="ctxDeleteAutor">Eliminar Autor/a</string>
+    <string name="authorUpdateSuccess">Author successfully updated:</string>
+    <string name="authorUpdateFailure">Something went wrong while updating author:</string>
+    <string name="updateAuthorMessage">Update author with these values?</string>
 </resources>

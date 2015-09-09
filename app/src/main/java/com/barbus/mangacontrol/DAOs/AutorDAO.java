@@ -15,4 +15,8 @@ public class AutorDAO {
     public static final String URI = "content://com.barbus.controlmanga.contentproviders/autor/";
     public static final Uri CONTENT_URI = Uri.parse(URI);
 
+    public static Uri getContentUriWithAppendedId(long id) {
+        return Uri.withAppendedPath(CONTENT_URI, String.valueOf(id));
+    }
+
 }
